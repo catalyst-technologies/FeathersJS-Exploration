@@ -15,9 +15,7 @@ const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
 
-const authentication = require('./authentication');
-
-const postgres = require('./postgres');
+const database = require('./database');
 
 const app = feathers();
 
@@ -35,11 +33,9 @@ app.use('/', feathers.static(app.get('public')));
 
 // Set up Plugins and providers
 app.configure(hooks());
-app.configure(postgres());
+app.configure(database);
 app.configure(rest());
 app.configure(socketio());
-
-app.configure(authentication);
 
 // Set up our services (see `services/index.js`)
 app.configure(services);

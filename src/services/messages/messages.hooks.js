@@ -1,33 +1,18 @@
-'use strict';
 
-const { authenticate } = require('feathers-authentication').hooks;
-const { populate } = require('feathers-hooks-common');
-const processMessage = require('../../hooks/process-message');
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [],
     find: [],
     get: [],
-    create: [ processMessage() ],
-    update: [ processMessage() ],
-    patch: [ processMessage() ],
+    create: [],
+    update: [],
+    patch: [],
     remove: []
   },
 
   after: {
-    all: [
-      populate({
-        schema: {
-          include: [{
-            service: 'users',
-            nameAs: 'user',
-            parentField: 'userId',
-            childField: '_id'
-          }]
-        }
-      })
-    ],
+    all: [],
     find: [],
     get: [],
     create: [],
